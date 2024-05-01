@@ -1,0 +1,20 @@
+---
+title: "Introducción y recursos"
+---
+
+## ¿Qué es?
+
+
+
+## ¿Qué ventajas tiene?
+
+
+
+## Instalación
+
+```{r}
+#| eval: false
+
+install.packages("data.table")
+```
+

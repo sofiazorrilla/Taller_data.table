@@ -1,0 +1,49 @@
+---
+title: "Filtros y selección de columnas"
+format: 
+  html:
+    page-layout: full 
+---
+
+
+## Filtros y selección de filas
+
+```{r}
+
+library(data.table)
+
+data = fread("https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv")
+```
+
+### Seleccionar por índices
+
+```{r}
+data[1:2]
+
+data[1:2,]
+```
+
+
+### Filtrar filas
+
+```{r}
+data_month_2_3 <- data[year == "2014" & month == 2 | month == 3,] 
+
+unique(data_month_2_3$month)
+unique(data_month_2_3$year)
+
+```
+
+## Seleccionar columnas
+
+### Seleccionar columnas por índice
+
+```{r}
+data[,2:3,]
+```
+
+### Seleccionar columnas por nombre
+```{r}
+data[,c("month","day","year"),]
+```
+

@@ -1,0 +1,53 @@
+---
+title: "Importar y exportar datos"
+---
+
+## Crear un objeto data.table
+
+Un objeto data.table se puede definir, por ejemplo:
+
+```{r}
+library(data.table)
+
+DT = data.table(
+  ID = c("b","b","b","a","a","c"),
+  a = 1:6,
+  b = 7:12,
+  c = 13:18
+)
+
+DT
+```
+
+
+## Importar datos de archivos
+
+Alternativamente, se puede importar utilizando la función `fread`. Por ejemplo, podemos importar la tabla de XX que tiene ZZ registros. 
+
+```{r}
+library(data.table)
+
+data = fread("https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv")
+
+data
+```
+
+## data.frame - data.table
+
+El objeto de data.table es un objeto basado en un data.frame, por lo tanto es compatible con las funciones de R base que trabajan con data.frame. 
+
+```{r}
+str(data)
+```
+Sin embargo, los objetos se pueden cambiar de clase. Por ejemplo: 
+
+```{r}
+library(magrittr)
+
+as.data.frame(DT) %>% class()
+
+as.data.frame(DT) %>% as.data.table() %>% class()
+```
+
+
+## Exportar

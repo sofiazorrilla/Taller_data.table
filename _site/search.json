@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "index.html#qué-ventajas-tiene",
+    "href": "index.html#qué-ventajas-tiene",
+    "title": "Introducción y recursos",
+    "section": "¿Qué ventajas tiene?",
+    "text": "¿Qué ventajas tiene?"
+  },
+  {
+    "objectID": "index.html#instalación",
+    "href": "index.html#instalación",
+    "title": "Introducción y recursos",
+    "section": "Instalación",
+    "text": "Instalación\n\ninstall.packages(\"data.table\")"
+  },
+  {
+    "objectID": "tema2.html",
+    "href": "tema2.html",
+    "title": "Importar y exportar datos",
+    "section": "",
+    "text": "Un objeto data.table se puede definir, por ejemplo:\n\nlibrary(data.table)\n\nDT = data.table(\n  ID = c(\"b\",\"b\",\"b\",\"a\",\"a\",\"c\"),\n  a = 1:6,\n  b = 7:12,\n  c = 13:18\n)\n\nDT\n\n       ID     a     b     c\n   &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;\n1:      b     1     7    13\n2:      b     2     8    14\n3:      b     3     9    15\n4:      a     4    10    16\n5:      a     5    11    17\n6:      c     6    12    18"
+  },
+  {
+    "objectID": "tema2.html#crear-un-objeto-data.table",
+    "href": "tema2.html#crear-un-objeto-data.table",
+    "title": "Importar y exportar datos",
+    "section": "",
+    "text": "Un objeto data.table se puede definir, por ejemplo:\n\nlibrary(data.table)\n\nDT = data.table(\n  ID = c(\"b\",\"b\",\"b\",\"a\",\"a\",\"c\"),\n  a = 1:6,\n  b = 7:12,\n  c = 13:18\n)\n\nDT\n\n       ID     a     b     c\n   &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;\n1:      b     1     7    13\n2:      b     2     8    14\n3:      b     3     9    15\n4:      a     4    10    16\n5:      a     5    11    17\n6:      c     6    12    18"
+  },
+  {
+    "objectID": "tema2.html#importar-datos-de-archivos",
+    "href": "tema2.html#importar-datos-de-archivos",
+    "title": "Importar y exportar datos",
+    "section": "Importar datos de archivos",
+    "text": "Importar datos de archivos\nAlternativamente, se puede importar utilizando la función fread. Por ejemplo, podemos importar la tabla de XX que tiene ZZ registros.\n\nlibrary(data.table)\n\ndata = fread(\"https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv\")\n\ndata\n\n         year month   day dep_delay arr_delay carrier origin   dest air_time distance  hour\n        &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;int&gt;     &lt;int&gt;  &lt;char&gt; &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;int&gt; &lt;int&gt;\n     1:  2014     1     1        14        13      AA    JFK    LAX      359     2475     9\n     2:  2014     1     1        -3        13      AA    JFK    LAX      363     2475    11\n     3:  2014     1     1         2         9      AA    JFK    LAX      351     2475    19\n     4:  2014     1     1        -8       -26      AA    LGA    PBI      157     1035     7\n     5:  2014     1     1         2         1      AA    JFK    LAX      350     2475    13\n    ---                                                                                    \n253312:  2014    10    31         1       -30      UA    LGA    IAH      201     1416    14\n253313:  2014    10    31        -5       -14      UA    EWR    IAH      189     1400     8\n253314:  2014    10    31        -8        16      MQ    LGA    RDU       83      431    11\n253315:  2014    10    31        -4        15      MQ    LGA    DTW       75      502    11\n253316:  2014    10    31        -5         1      MQ    LGA    SDF      110      659     8"
+  },
+  {
+    "objectID": "tema2.html#data.frame---data.table",
+    "href": "tema2.html#data.frame---data.table",
+    "title": "Importar y exportar datos",
+    "section": "data.frame - data.table",
+    "text": "data.frame - data.table\nEl objeto de data.table es un objeto basado en un data.frame, por lo tanto es compatible con las funciones de R base que trabajan con data.frame.\n\nstr(data)\n\nClasses 'data.table' and 'data.frame':  253316 obs. of  11 variables:\n $ year     : int  2014 2014 2014 2014 2014 2014 2014 2014 2014 2014 ...\n $ month    : int  1 1 1 1 1 1 1 1 1 1 ...\n $ day      : int  1 1 1 1 1 1 1 1 1 1 ...\n $ dep_delay: int  14 -3 2 -8 2 4 -2 -3 -1 -2 ...\n $ arr_delay: int  13 13 9 -26 1 0 -18 -14 -17 -14 ...\n $ carrier  : chr  \"AA\" \"AA\" \"AA\" \"AA\" ...\n $ origin   : chr  \"JFK\" \"JFK\" \"JFK\" \"LGA\" ...\n $ dest     : chr  \"LAX\" \"LAX\" \"LAX\" \"PBI\" ...\n $ air_time : int  359 363 351 157 350 339 338 356 161 349 ...\n $ distance : int  2475 2475 2475 1035 2475 2454 2475 2475 1089 2422 ...\n $ hour     : int  9 11 19 7 13 18 21 15 15 18 ...\n - attr(*, \".internal.selfref\")=&lt;externalptr&gt; \n\n\nSin embargo, los objetos se pueden cambiar de clase. Por ejemplo:\n\nlibrary(magrittr)\n\nas.data.frame(DT) %&gt;% class()\n\n[1] \"data.frame\"\n\nas.data.frame(DT) %&gt;% as.data.table() %&gt;% class()\n\n[1] \"data.table\" \"data.frame\""
+  },
+  {
+    "objectID": "tema2.html#exportar",
+    "href": "tema2.html#exportar",
+    "title": "Importar y exportar datos",
+    "section": "Exportar",
+    "text": "Exportar"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "tema3.html",
+    "href": "tema3.html",
+    "title": "Filtros y selección de columnas",
+    "section": "",
+    "text": "library(data.table)\n\ndata = fread(\"https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv\")\n\n\n\n\ndata[1:2]\n\n    year month   day dep_delay arr_delay carrier origin   dest air_time distance  hour\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;int&gt;     &lt;int&gt;  &lt;char&gt; &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;int&gt; &lt;int&gt;\n1:  2014     1     1        14        13      AA    JFK    LAX      359     2475     9\n2:  2014     1     1        -3        13      AA    JFK    LAX      363     2475    11\n\ndata[1:2,]\n\n    year month   day dep_delay arr_delay carrier origin   dest air_time distance  hour\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;int&gt;     &lt;int&gt;  &lt;char&gt; &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;int&gt; &lt;int&gt;\n1:  2014     1     1        14        13      AA    JFK    LAX      359     2475     9\n2:  2014     1     1        -3        13      AA    JFK    LAX      363     2475    11\n\n\n\n\n\n\ndata_month_2_3 &lt;- data[year == \"2014\" & month == 2 | month == 3,] \n\nunique(data_month_2_3$month)\n\n[1] 2 3\n\nunique(data_month_2_3$year)\n\n[1] 2014"
+  },
+  {
+    "objectID": "tema3.html#filtros-y-selección-de-filas",
+    "href": "tema3.html#filtros-y-selección-de-filas",
+    "title": "Filtros y selección de columnas",
+    "section": "",
+    "text": "library(data.table)\n\ndata = fread(\"https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv\")\n\n\n\n\ndata[1:2]\n\n    year month   day dep_delay arr_delay carrier origin   dest air_time distance  hour\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;int&gt;     &lt;int&gt;  &lt;char&gt; &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;int&gt; &lt;int&gt;\n1:  2014     1     1        14        13      AA    JFK    LAX      359     2475     9\n2:  2014     1     1        -3        13      AA    JFK    LAX      363     2475    11\n\ndata[1:2,]\n\n    year month   day dep_delay arr_delay carrier origin   dest air_time distance  hour\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;int&gt;     &lt;int&gt;  &lt;char&gt; &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;int&gt; &lt;int&gt;\n1:  2014     1     1        14        13      AA    JFK    LAX      359     2475     9\n2:  2014     1     1        -3        13      AA    JFK    LAX      363     2475    11\n\n\n\n\n\n\ndata_month_2_3 &lt;- data[year == \"2014\" & month == 2 | month == 3,] \n\nunique(data_month_2_3$month)\n\n[1] 2 3\n\nunique(data_month_2_3$year)\n\n[1] 2014"
+  },
+  {
+    "objectID": "tema3.html#seleccionar-columnas",
+    "href": "tema3.html#seleccionar-columnas",
+    "title": "Filtros y selección de columnas",
+    "section": "Seleccionar columnas",
+    "text": "Seleccionar columnas\n\nSeleccionar columnas por índice\n\ndata[,2:3,]\n\n        month   day\n        &lt;int&gt; &lt;int&gt;\n     1:     1     1\n     2:     1     1\n     3:     1     1\n     4:     1     1\n     5:     1     1\n    ---            \n253312:    10    31\n253313:    10    31\n253314:    10    31\n253315:    10    31\n253316:    10    31\n\n\n\n\nSeleccionar columnas por nombre\n\ndata[,c(\"month\",\"day\",\"year\"),]\n\n        month   day  year\n        &lt;int&gt; &lt;int&gt; &lt;int&gt;\n     1:     1     1  2014\n     2:     1     1  2014\n     3:     1     1  2014\n     4:     1     1  2014\n     5:     1     1  2014\n    ---                  \n253312:    10    31  2014\n253313:    10    31  2014\n253314:    10    31  2014\n253315:    10    31  2014\n253316:    10    31  2014"
+  },
+  {
+    "objectID": "tema1.html",
+    "href": "tema1.html",
+    "title": "Sintaxis básica",
+    "section": "",
+    "text": "data.table es un objeto de R que está pensado para mantener las operaciones en uno o pocos comandos. La lógica de la sintaxis básica es la siguiente:\n\nUn espacio para las operaciones sobre las filas, por ejemplo filtrar u ordenar.\nUn espacio en el que se ejecutan las operaciones sobre las columnas, por ejemplo, seleccionar, modificar, crear, etc.\nUn espacio en el que se pueden indicar agrupaciones con base en las cuales se apliquen otras operaciones (group_by en dplyr)\nNota: Estos 3 tipos de operaciones no son los únicos, existen más y se pueden consultar en XXX.\n\n\n\n\n\nSintaxis básica. DT = objeto data.table, i = espacio en el que ocurren las operaciones de las filas (filtrar u ordenar), j = espacio en el que ocurren las operaciones sobre las columnas (seleccionar, modificar), by = espacio para hacer agrupaciones por medio de un índice\n\n\n\nPor ejemplo, definamos la siguiente tabla usando data.table"
+  }
+]
