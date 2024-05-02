@@ -5,10 +5,19 @@ format:
     page-layout: full 
 ---
 
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+```
+
 
 ## Filtros y selección de filas
 
 ```{r}
+#| echo: false
+#| warning: false
 
 library(data.table)
 
@@ -23,7 +32,6 @@ data[1:2]
 data[1:2,]
 ```
 
-
 ### Filtrar filas
 
 ```{r}
@@ -34,6 +42,14 @@ unique(data_month_2_3$year)
 
 ```
 
+### Ordenar filas
+
+```{r}
+data[order(origin, -dest)]
+```
+
+
+
 ## Seleccionar columnas
 
 ### Seleccionar columnas por índice
@@ -42,8 +58,40 @@ unique(data_month_2_3$year)
 data[,2:3,]
 ```
 
+
 ### Seleccionar columnas por nombre
+
+Seleccionar columna por nombre y regresar como vector:
+
 ```{r}
-data[,c("month","day","year"),]
+data[,arr_delay] %>% head()
 ```
+
+Seleccionar columna y regresar como tabla:
+
+```{r}
+data[,list(dep_delay,arr_delay)]
+```
+
+Un atajo para no escribir `list()` es `.()`:
+
+```{r}
+data[,.(dep_delay,arr_delay)]
+```
+
+Seleccionar columnas guardadas en una variable utilizando el prefijo `..`:
+
+```{r}
+variables <- c("arr_delay", "dep_delay")
+
+data[ , ..variables]
+```
+
+
+
+### Renombrar columnas
+```{r}
+data[, .(delay_arr = arr_delay, delay_dep = dep_delay)]
+```
+
 

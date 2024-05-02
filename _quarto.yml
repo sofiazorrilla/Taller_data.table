@@ -4,7 +4,7 @@ project:
 website:
 
   navbar:
-    title: "<img src='logo.png' alt='Logo' class='logo'>"
+    title: "<img src='img/logo.png' alt='Logo' class='logo'>"
     background: "white"
     foreground: "#a7a9ac"
     
