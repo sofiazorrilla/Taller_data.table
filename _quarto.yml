@@ -33,6 +33,8 @@ website:
           - tema3.qmd
           - tema4.qmd
           - tema5.qmd
+          - tema6.qmd
+          - tema7.qmd
 
 
 format:

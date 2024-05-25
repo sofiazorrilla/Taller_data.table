@@ -1,3 +1,64 @@
 ---
-title: "Concatenación"
+title: "Cadenas de operaciones"
 ---
+
+Una función muy importante del paquete es la capacidad de encadenar operaciones en un mismo comando sin necesidad de guardar el resultado en algun objeto. 
+
+Es una función similar al uso del pipe `%>%` o `|>` en tidyverse o rbase. En data table se pueden evaluar una serie de expresiones una después de la otra escribiendolas entre corchetes de esta manera:
+
+```
+DT[ ... ][ ... ][ ... ]
+```
+o de forma vertical
+
+```
+DT[ ...
+   ][ ...
+     ][ ...
+       ]
+```
+
+Por ejemplo, utilizando la tabla de registros de plantas de México podemos:
+
+1. Seleccionar los registros del género Quercus y filtrar aquellos que no tienen información acerca de la especie o del año de colecta
+
+```{.r}
+
+library(data.table)
+
+data = fread("data/plantae_mexico_conCoords_specimen.csv")
+
+data[genus == "Quercus" & !is.na(species) & species != "" & !is.na(year)]
+
+```
+
+3. Agrupar por especie y por año de colecta 
+
+4. Contar el número de registros de que se realizó para cada especie en cada año 
+
+```{.r}
+
+data[genus == "Quercus" & !is.na(species) & species != "" & !is.na(year), .(.N), by = .(year,species)]
+
+```
+
+5. Ordenar la columna de número de registros de mayor a menor
+
+```{.r}
+
+data[genus == "Quercus" & !is.na(species) & species != "" & !is.na(year), .(N = .N), by = .(year,species)][order(year,-N)]
+
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+library(data.table)
+
+data = fread("data/data_quercus.csv")
+
+data[genus == "Quercus" & !is.na(species) & species != "" & !is.na(year), .(.N), by = .(year,species)][order(year,-N)]
+
+```
