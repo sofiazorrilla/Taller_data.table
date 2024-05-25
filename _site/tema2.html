@@ -219,9 +219,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#crear-un-objeto-data.table" id="toc-crear-un-objeto-data.table" class="nav-link active" data-scroll-target="#crear-un-objeto-data.table">Crear un objeto data.table</a></li>
-  <li><a href="#importar-datos-de-archivos" id="toc-importar-datos-de-archivos" class="nav-link" data-scroll-target="#importar-datos-de-archivos">Importar datos de archivos</a></li>
-  <li><a href="#data.frame---data.table" id="toc-data.frame---data.table" class="nav-link" data-scroll-target="#data.frame---data.table">data.frame - data.table</a></li>
+  <li><a href="#importar-y-exportar-datos-de-archivos" id="toc-importar-y-exportar-datos-de-archivos" class="nav-link" data-scroll-target="#importar-y-exportar-datos-de-archivos">Importar y exportar datos de archivos</a></li>
   <li><a href="#exportar" id="toc-exportar" class="nav-link" data-scroll-target="#exportar">Exportar</a></li>
+  <li><a href="#velocidad-dplyr-vs-data.table" id="toc-velocidad-dplyr-vs-data.table" class="nav-link" data-scroll-target="#velocidad-dplyr-vs-data.table">Velocidad dplyr vs data.table</a></li>
+  <li><a href="#data.frame---data.table" id="toc-data.frame---data.table" class="nav-link" data-scroll-target="#data.frame---data.table">data.frame - data.table</a></li>
   </ul>
 </nav>
     </div>
@@ -270,16 +271,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6:      c     6    12    18</code></pre>
 </div>
 </div>
-</section>
-<section id="importar-datos-de-archivos" class="level2">
-<h2 class="anchored" data-anchor-id="importar-datos-de-archivos">Importar datos de archivos</h2>
-<p>Alternativamente, se puede importar utilizando la función <code>fread</code>. Por ejemplo, podemos importar la tabla de XX que tiene ZZ registros.</p>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Genera un objeto data.table en el que la primera columna sea un id de secuencia y la segunda sea una secuencia (aleatoria) de tamaño 300 caracteres</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Respuesta
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">"https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>secuencias <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">id =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10000</span>), </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">sequencia =</span> <span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10000</span>), <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"T"</span>, <span class="st">"C"</span>, <span class="st">"G"</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="at">collapse =</span> <span class="st">""</span>)))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(secuencias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      id                                                                                            sequencia
+   &lt;int&gt;                                                                                               &lt;char&gt;
+1:     1 AATTTGTGACGAAAATGGAATGAGTTCCTTATATCCAAAAGCCGTCACTTTACGACGTCTTGCAGGTGCTGGATCTAGGTAGAACGAAATTGGAGGCGGA
+2:     2 CGGAATAGTCCCGCTCCCATTGTAACACGTAGCGTCCACTGGATACTGTCCGCCTTGTTCGAGCTTGGGGGATCGTAATTTTACTTAGTAAGTAGTCACA
+3:     3 CATGTCGCTAGCTTGGGAACTTTAGCAAGCGTCCAGTCTGCAATATAAATTGTGCGGGGTTGCAGAGCACATATAGCTTGCGAGGCAGGGCCACTCCCGA
+4:     4 TGCATGCGTTTGTAGGTCGTCATGGTGCCTGAGTGAGGCCCTATTCCACCAGATCGATATAGCCAACTCATCGTTCAACCTCGATAGCTAGCTGTAATGC
+5:     5 TCATGCATTCTTTCTTCTATTGCGAAGACCCTACTACAGAAGTAAGTATCCCTAGGCGAGTTCACCCGTCCCGTGTCGACAGACCGCAACCCATATTTTG
+6:     6 CATCCGAATCTGACCACGCAATCTAGGTCTCTGAGTGGGGGTCTCTAAGCCCTGAGGATCTTTACCACCCTGCGTAAAACGCAGGGCGGTGTAGTTACTG</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="importar-y-exportar-datos-de-archivos" class="level2">
+<h2 class="anchored" data-anchor-id="importar-y-exportar-datos-de-archivos">Importar y exportar datos de archivos</h2>
+<p>Las funciones para importar (<code>fread</code>) y exportar (<code>fwrite</code>) tienen las siguientes opciones principales:</p>
+<ul>
+<li><p><code>x</code>: el objeto que queremos exportar.</p></li>
+<li><p><code>file</code>: ruta para escribir/leer el archivo.</p></li>
+<li><p><code>sep</code>: el delimitador entre columnas.</p></li>
+<li><p><code>dec</code>: el separador decimal.</p></li>
+<li><p><code>dateTimeAs</code>: formato en el que guardar objetos de fecha. Por defecto es “ISO”.</p></li>
+</ul>
+<p><strong>Ejemplo</strong>: Por ejemplo, podemos importar la tabla de XX que tiene ZZ registros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">"https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         year month   day dep_delay arr_delay carrier origin   dest air_time distance  hour
         &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;int&gt;     &lt;int&gt;  &lt;char&gt; &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;int&gt; &lt;int&gt;
@@ -296,12 +355,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 253316:  2014    10    31        -5         1      MQ    LGA    SDF      110      659     8</code></pre>
 </div>
 </div>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="exportar" class="level2">
+<h2 class="anchored" data-anchor-id="exportar">Exportar</h2>
+<p><strong>Ejemplo</strong>: podemos escribir la tabla DT que creamos anteriormente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(DT, <span class="st">"data/testDT.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="velocidad-dplyr-vs-data.table" class="level2">
+<h2 class="anchored" data-anchor-id="velocidad-dplyr-vs-data.table">Velocidad dplyr vs data.table</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rbenchmark)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">benchmark</span>(<span class="st">"r base"</span> <span class="ot">=</span> {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">read.csv</span>(<span class="st">"data/flights14.csv"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          },</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">"data.table"</span> <span class="ot">=</span> {</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">fread</span>(<span class="st">"data/flights14.csv"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>          },</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">replications =</span> <span class="dv">10</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"test"</span>, <span class="st">"replications"</span>, <span class="st">"elapsed"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"relative"</span>, <span class="st">"user.self"</span>, <span class="st">"sys.self"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        test replications elapsed relative user.self sys.self
+2 data.table           10   0.259    1.000     1.498    0.036
+1     r base           10   2.534    9.784     2.471    0.056</code></pre>
+</div>
+</div>
+<p><br></p>
 </section>
 <section id="data.frame---data.table" class="level2">
 <h2 class="anchored" data-anchor-id="data.frame---data.table">data.frame - data.table</h2>
 <p>El objeto de data.table es un objeto basado en un data.frame, por lo tanto es compatible con las funciones de R base que trabajan con data.frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes 'data.table' and 'data.frame':  253316 obs. of  11 variables:
  $ year     : int  2014 2014 2014 2014 2014 2014 2014 2014 2014 2014 ...
@@ -320,20 +444,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Sin embargo, los objetos se pueden cambiar de clase. Por ejemplo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(DT) <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(DT) <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(DT) <span class="sc">%&gt;%</span> <span class="fu">as.data.table</span>() <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(DT) <span class="sc">%&gt;%</span> <span class="fu">as.data.table</span>() <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.table" "data.frame"</code></pre>
 </div>
 </div>
-</section>
-<section id="exportar" class="level2">
-<h2 class="anchored" data-anchor-id="exportar">Exportar</h2>
 
 
 </section>

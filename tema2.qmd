@@ -19,10 +19,45 @@ DT = data.table(
 DT
 ```
 
+<br>
 
-## Importar datos de archivos
+::: {.callout-note collapse="true"}
+## Ejercicio
 
-Alternativamente, se puede importar utilizando la función `fread`. Por ejemplo, podemos importar la tabla de XX que tiene ZZ registros. 
+Genera un objeto data.table en el que la primera columna sea un id de secuencia y la segunda sea una secuencia (aleatoria) de tamaño 300 caracteres
+:::
+
+::: {.callout-note collapse="true"}
+## Respuesta
+
+```{r}
+secuencias <- data.table(
+                id = seq(1,10000), 
+                sequencia = sapply(seq(1, 10000), function(x) paste(sample(c("A", "T", "C", "G"), 100, replace = TRUE), collapse = "")))
+
+head(secuencias)
+```
+:::
+
+
+<br>
+
+## Importar y exportar datos de archivos
+
+Las funciones para importar (`fread`) y exportar (`fwrite`) tienen las siguientes opciones principales:
+
+- `x`: el objeto que queremos exportar.
+
+- `file`: ruta para escribir/leer el archivo.
+
+- `sep`: el delimitador entre columnas.
+
+- `dec`: el separador decimal.
+
+- `dateTimeAs`: formato en el que guardar objetos de fecha. Por defecto es “ISO”.
+
+
+**Ejemplo**: Por ejemplo, podemos importar la tabla de XX que tiene ZZ registros. 
 
 ```{r}
 library(data.table)
@@ -32,6 +67,54 @@ data = fread("https://raw.githubusercontent.com/Rdatatable/data.table/master/vig
 data
 ```
 
+<br>
+
+::: {.callout-note collapse="true"}
+## Ejercicio
+
+
+:::
+
+<br>
+
+## Exportar
+
+**Ejemplo**: podemos escribir la tabla DT que creamos anteriormente:
+
+```{r}
+fwrite(DT, "data/testDT.csv", sep = ",")
+```
+
+<br>
+
+::: {.callout-note collapse="true"}
+## Ejercicio
+
+
+:::
+
+<br>
+
+## Velocidad dplyr vs data.table
+
+```{r}
+
+library(rbenchmark)
+
+benchmark("r base" = {
+            read.csv("data/flights14.csv")
+          },
+          "data.table" = {
+            fread("data/flights14.csv")
+          },
+          replications = 10,
+          columns = c("test", "replications", "elapsed",
+                      "relative", "user.self", "sys.self"))
+
+```
+
+<br>
+
 ## data.frame - data.table
 
 El objeto de data.table es un objeto basado en un data.frame, por lo tanto es compatible con las funciones de R base que trabajan con data.frame. 
@@ -39,6 +122,7 @@ El objeto de data.table es un objeto basado en un data.frame, por lo tanto es co
 ```{r}
 str(data)
 ```
+
 Sin embargo, los objetos se pueden cambiar de clase. Por ejemplo: 
 
 ```{r}
@@ -50,4 +134,5 @@ as.data.frame(DT) %>% as.data.table() %>% class()
 ```
 
 
-## Exportar
+
+
