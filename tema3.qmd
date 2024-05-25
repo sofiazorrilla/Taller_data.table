@@ -19,6 +19,7 @@ library(data.table)
 
 Similar a como se seleccionan filas en un data.frame, en un objeto data.table se pueden seleccionar filas utilizando rangos de índices. En los siguientes dos ejemplos se muestra como seleccionar las primeras dos filas de la tabla de registros. 
 
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -28,6 +29,7 @@ data = fread("data/head_registros.csv")
 
 ```{.r}
 library(data.table)
+
 
 data = fread("data/plantae_mexico_conCoords_specimen.csv")
 ```

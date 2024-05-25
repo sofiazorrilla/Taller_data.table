@@ -105,6 +105,7 @@ fread("data/head_registros.csv") |> knitr::kable()
 ::: {.callout-note collapse="true"}
 ## Ejercicio
 
+
 Utiliza el código anterior para cargar la tabla de especímenes en tu computadora. 
 
 Nota: La tabla tiene más de 3 millones de registros y, en las pruebas que hicimos, observamos que la tabla ocupa 1.72 GB de memoria cuando se carga. Incluimos un subconjunto aleatorio de 100,000 filas (sub_100000_plantae_mexico_conCoords_specimen.csv) para los que quieran practicar con objetos que ocupen menos memoria. 
@@ -130,6 +131,7 @@ fwrite(data, "data/testDT.csv", sep = ",")
 
 ::: {.callout-note collapse="true"}
 ## Ejercicio
+
 
 Exporta la tabla de registros de especimenes como un archivo comprimido.
 
@@ -170,6 +172,13 @@ test = benchmark("r base" = {
 
 read.csv("data/benchmark_results.csv") |> knitr::kable()
 ```
+
+::: {.callout-note collapse="true"}
+## Ejercicio opcional
+
+Si quieres, puedes revisar el tiempo que te toma cargar la base de datos XX utilizando read.csv y fread. Utiliza el comando de benchmark de la paquetería rbenchmark para contar el tiempo. Nota: en el número de réplicas puedes poner una o dos porque si no te vas a tardar mucho. 
+
+:::
 
 <br>
 
