@@ -4,3 +4,6 @@
 .Ruserdata
 
 /.quarto/
+/data/plantae_mexico_conCoords_specimen.csv
+data/plantae_mexico_conCoords_specimen.csv.gz
+/big_data/
