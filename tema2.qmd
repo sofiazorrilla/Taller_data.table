@@ -72,6 +72,16 @@ data
 ::: {.callout-note collapse="true"}
 ## Ejercicio
 
+Importa la tabla XX que encontrarás en la siguiente liga. 
+
+¿Cuántas filas y columnas tiene?
+
+:::
+
+::: {.callout-note collapse="true"}
+## Respuesta
+
+
 
 :::
 
@@ -90,6 +100,23 @@ fwrite(DT, "data/testDT.csv", sep = ",")
 ::: {.callout-note collapse="true"}
 ## Ejercicio
 
+Exporta la tabla que generaste en el ejercicio 1 un archivo csv.
+
+:::
+
+
+::: {.callout-note collapse="true"}
+## Respuesta
+
+```{r}
+#| eval: false
+
+secuencias <- data.table(
+                id = seq(1,10000), 
+                sequencia = sapply(seq(1, 10000), function(x) paste(sample(c("A", "T", "C", "G"), 100, replace = TRUE), collapse = "")))
+
+fwrite(secuencias, "data/secuencias.csv", sep = ",")
+```
 
 :::
 
@@ -112,6 +139,13 @@ benchmark("r base" = {
                       "relative", "user.self", "sys.self"))
 
 ```
+
+::: {.callout-note collapse="true"}
+## Ejercicio opcional
+
+Si quieres, puedes revisar el tiempo que te toma cargar la base de datos XX utilizando read.csv y fread. Utiliza el comando de benchmark de la paquetería rbenchmark para contar el tiempo. Nota: en el número de réplicas puedes poner una o dos porque si no te vas a tardar mucho. 
+
+:::
 
 <br>
 

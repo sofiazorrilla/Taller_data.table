@@ -15,13 +15,15 @@ library(tidyverse)
 
 ## Filtros y selección de filas
 
+
 ```{r}
 #| echo: false
 #| warning: false
 
 library(data.table)
 
-data = fread("https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv")
+data = fread("big_data/NAM90/Height_INT.imputed.stats")
+
 ```
 
 ### Seleccionar por índices
