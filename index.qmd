@@ -18,6 +18,4 @@ title: "Introducción y recursos"
 install.packages("data.table")
 ```
 
-## Cheatsheet
-
-![](img/datatable.pdf){width="1000" height=1000}
+## Recursos
