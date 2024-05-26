@@ -17,7 +17,9 @@ data.table es un objeto de R que está pensado para mantener las operaciones en 
 ![Sintaxis básica. DT = objeto data.table, i = espacio en el que ocurren las operaciones de las filas (filtrar u ordenar), j = espacio en el que ocurren las operaciones sobre las columnas (seleccionar, modificar), by = espacio para hacer agrupaciones por medio de un índice](img/sintaxis.png)
 :::
 
+## Cheatsheet
 
+![](img/datatable.pdf){width="1000" height=1000}
 
 
 
