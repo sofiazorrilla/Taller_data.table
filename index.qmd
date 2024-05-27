@@ -2,13 +2,21 @@
 title: "Introducción y recursos"
 ---
 
-## ¿Qué es?
+## ¿Qué es? ¿Qué ventajas tiene?
+
+Es un paquete que extiende y hace más eficiente el `data.frame` de R base. De acuerdo con los creadores del [paquete](https://rdatatable.gitlab.io/data.table/index.html), las ventajas de data.table son:
+
+- Sintaxis consisa
+- Velocidad de operaciones
+- Eficiencia en el uso de la memoria
+- Manejo cuidadoso del ciclo de vida de API 
+- Una amplia comunidad
+- Una amplia variedad de funciones
 
 
+## Comparaciones con otros paquetes
 
-## ¿Qué ventajas tiene?
-
-
+[Benchmarks](https://duckdblabs.github.io/db-benchmark/)
 
 ## Instalación
 
@@ -19,3 +27,8 @@ install.packages("data.table")
 ```
 
 ## Recursos
+
+### Comunidad 
+ - [StackOverflow data.table](https://stackoverflow.com/questions/tagged/data.table)
+ - [Wiki](https://github.com/Rdatatable/data.table/wiki)
+ - [Vigñettes](https://rdatatable.gitlab.io/data.table/index.html)

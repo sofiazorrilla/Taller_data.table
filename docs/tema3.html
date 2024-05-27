@@ -278,17 +278,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       gbifID                 occurrenceID       phylum          class        order      family       genus
+        &lt;i64&gt;                       &lt;char&gt;       &lt;char&gt;         &lt;char&gt;       &lt;char&gt;      &lt;char&gt;      &lt;char&gt;
 1: 2825623524 TAIF:PLANT:318128:1:1:411555 Tracheophyta Polypodiopsida Polypodiales Pteridaceae    Adiantum
 2: 2825649445 TAIF:PLANT:318579:1:1:411579 Tracheophyta Polypodiopsida Polypodiales Pteridaceae Scoliosorus
                   species infraspecificEpithet taxonRank                         scientificName
+                   &lt;char&gt;               &lt;char&gt;    &lt;char&gt;                                 &lt;char&gt;
 1:      Adiantum andicola                        SPECIES               Adiantum andicola Liebm.
 2: Scoliosorus ensiformis                        SPECIES Scoliosorus ensiformis (Hook.) T.Moore
                     verbatimScientificName verbatimScientificNameAuthorship countryCode     stateProvince
+                                    &lt;char&gt;                           &lt;lgcl&gt;      &lt;char&gt;            &lt;char&gt;
 1:                Adiantum andicola Liebm.                               NA          MX Oaxaca (瓦哈卡州)
 2: Scoliosorus ensiformis (Hook.) T. Moore                               NA          MX Oaxaca (瓦哈卡州)
-   decimalLatitude decimalLongitude coordinateUncertaintyInMeters elevation day month year      basisOfRecord
-1:        17.30213         -96.3808                            NA      2267  27     2 2012 PRESERVED_SPECIMEN
-2:        17.30213         -96.3808                            NA      2267  27     2 2012 PRESERVED_SPECIMEN</code></pre>
+   decimalLatitude decimalLongitude coordinateUncertaintyInMeters elevation   day month  year      basisOfRecord
+             &lt;num&gt;            &lt;num&gt;                        &lt;lgcl&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;             &lt;char&gt;
+1:        17.30213         -96.3808                            NA      2267    27     2  2012 PRESERVED_SPECIMEN
+2:        17.30213         -96.3808                            NA      2267    27     2  2012 PRESERVED_SPECIMEN</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -297,17 +301,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       gbifID                 occurrenceID       phylum          class        order      family       genus
+        &lt;i64&gt;                       &lt;char&gt;       &lt;char&gt;         &lt;char&gt;       &lt;char&gt;      &lt;char&gt;      &lt;char&gt;
 1: 2825623524 TAIF:PLANT:318128:1:1:411555 Tracheophyta Polypodiopsida Polypodiales Pteridaceae    Adiantum
 2: 2825649445 TAIF:PLANT:318579:1:1:411579 Tracheophyta Polypodiopsida Polypodiales Pteridaceae Scoliosorus
                   species infraspecificEpithet taxonRank                         scientificName
+                   &lt;char&gt;               &lt;char&gt;    &lt;char&gt;                                 &lt;char&gt;
 1:      Adiantum andicola                        SPECIES               Adiantum andicola Liebm.
 2: Scoliosorus ensiformis                        SPECIES Scoliosorus ensiformis (Hook.) T.Moore
                     verbatimScientificName verbatimScientificNameAuthorship countryCode     stateProvince
+                                    &lt;char&gt;                           &lt;lgcl&gt;      &lt;char&gt;            &lt;char&gt;
 1:                Adiantum andicola Liebm.                               NA          MX Oaxaca (瓦哈卡州)
 2: Scoliosorus ensiformis (Hook.) T. Moore                               NA          MX Oaxaca (瓦哈卡州)
-   decimalLatitude decimalLongitude coordinateUncertaintyInMeters elevation day month year      basisOfRecord
-1:        17.30213         -96.3808                            NA      2267  27     2 2012 PRESERVED_SPECIMEN
-2:        17.30213         -96.3808                            NA      2267  27     2 2012 PRESERVED_SPECIMEN</code></pre>
+   decimalLatitude decimalLongitude coordinateUncertaintyInMeters elevation   day month  year      basisOfRecord
+             &lt;num&gt;            &lt;num&gt;                        &lt;lgcl&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;             &lt;char&gt;
+1:        17.30213         -96.3808                            NA      2267    27     2  2012 PRESERVED_SPECIMEN
+2:        17.30213         -96.3808                            NA      2267    27     2  2012 PRESERVED_SPECIMEN</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -522,6 +530,7 @@ Respuesta
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data[,<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               genus               species
+              &lt;char&gt;                &lt;char&gt;
      1:    Syngonium  Syngonium angustatum
      2:     Scaevola     Scaevola plumieri
      3:   Tillandsia    Tillandsia fuchsii
@@ -551,6 +560,7 @@ Respuesta
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data[,<span class="fu">list</span>(family,genus,species)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               family        genus               species
+               &lt;char&gt;       &lt;char&gt;                &lt;char&gt;
      1:       Araceae    Syngonium  Syngonium angustatum
      2:  Goodeniaceae     Scaevola     Scaevola plumieri
      3:  Bromeliaceae   Tillandsia    Tillandsia fuchsii
@@ -569,6 +579,7 @@ Respuesta
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data[,.(family,genus,species)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               family        genus               species
+               &lt;char&gt;       &lt;char&gt;                &lt;char&gt;
      1:       Araceae    Syngonium  Syngonium angustatum
      2:  Goodeniaceae     Scaevola     Scaevola plumieri
      3:  Bromeliaceae   Tillandsia    Tillandsia fuchsii
@@ -589,6 +600,7 @@ Respuesta
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>data[ , ..variables]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               family        genus               species
+               &lt;char&gt;       &lt;char&gt;                &lt;char&gt;
      1:       Araceae    Syngonium  Syngonium angustatum
      2:  Goodeniaceae     Scaevola     Scaevola plumieri
      3:  Bromeliaceae   Tillandsia    Tillandsia fuchsii
@@ -639,6 +651,7 @@ Respuesta
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>data[,..vars_info_geografica,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        countryCode                   stateProvince decimalLatitude decimalLongitude coordinateUncertaintyInMeters
+             &lt;char&gt;                          &lt;char&gt;           &lt;num&gt;            &lt;num&gt;                         &lt;num&gt;
      1:          MX                        Veracruz        19.33330        -96.66670                            NA
      2:          MX                         Yucatan        21.25417        -89.80833                            70
      3:          MX                         Chiapas        15.65000        -92.80000                           100
@@ -651,6 +664,7 @@ Respuesta
  99999:          MX             Michoacan de ocampo        19.76222       -100.86611                            80
 100000:          MX                        Guerrero        17.46814       -100.13643                         10490
         elevation
+            &lt;num&gt;
      1:        NA
      2:       0.0
      3:    1400.0
@@ -675,6 +689,7 @@ Respuesta
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data[, .(<span class="at">especie =</span> species, <span class="at">genero =</span> genus)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      especie       genero
+                       &lt;char&gt;       &lt;char&gt;
      1:  Syngonium angustatum    Syngonium
      2:     Scaevola plumieri     Scaevola
      3:    Tillandsia fuchsii   Tillandsia
