@@ -61,6 +61,8 @@ Ahora calcularemos el promedio de retraso de salida para todo los vuelos que sal
 flights[origin == "JFK" & month == 2L,
         .(mean_arr = mean(arr_delay))]
 ```
+:::
+
 ::: {.callout-note collapse="true"}
 ## Ejercicio
 
@@ -69,12 +71,12 @@ Ahora es tu turno: Calcula el promedio de retraso de salida y entrada para todo 
 ::: 
 
 ::: {.callout-note collapse="true"}
-
+## Respuesta
 
 ```{r}
 flights[origin == "JFK" & month == 6L,
         .(mean_arr = mean(arr_delay), mean_dep = mean(dep_delay))]
 ```
 
-
+:::
 

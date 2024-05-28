@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -106,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -192,10 +226,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#selección-por-múltiples-filtros" id="toc-selección-por-múltiples-filtros" class="nav-link active" data-scroll-target="#selección-por-múltiples-filtros">Selección por múltiples filtros</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -214,8 +254,142 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Durante esta sección continuaremos trabajando con el datase de especímenes de plantas que tiene registrados la plataforma GBIF (Global Biodiversity Information Facility) para México. Pero para otros ejercicios usaremos un conjunto de datos que contiene información de la Oficina de Estadísticas de Transporte para todos los vuelos que partieron de los aeropuertos de la ciudad de Nueva York en 2014 (https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv).</p>
+<section id="selección-por-múltiples-filtros" class="level2">
+<h2 class="anchored" data-anchor-id="selección-por-múltiples-filtros">Selección por múltiples filtros</h2>
+<p>Aquí sólo mostraremos un ejemplo de algo que se retomará en el tema 6 Por ejemplo si nos interesa seleccionar los datos de acuerdo a más de una característica podemos apoyarnos del operador &amp;.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plants[family<span class="sc">==</span><span class="st">"Araceae"</span> <span class="sc">&amp;</span> year<span class="sc">==</span><span class="dv">1997</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       gbifID                     occurrenceID       phylum      class       order  family     genus
+1: 2629021831 6973d68ba4951b05f1b767cad9c7a3bd Tracheophyta Liliopsida Alismatales Araceae   Wolffia
+2: 3308025546 ada5d16106857bd7c0d8ee0bc8d90d92 Tracheophyta Liliopsida Alismatales Araceae Anthurium
+3: 2629020382 18de679e2ae5d3769b04a72485ec6277 Tracheophyta Liliopsida Alismatales Araceae     Lemna
+4: 1895542847 326fcc93e9a784983d7f0b40b457fb77 Tracheophyta Liliopsida Alismatales Araceae   Wolffia
+                species infraspecificEpithet taxonRank             scientificName verbatimScientificName
+1: Wolffia brasiliensis                        SPECIES Wolffia brasiliensis Wedd.   Wolffia brasiliensis
+2:   Anthurium umbrosum                        SPECIES  Anthurium umbrosum Liebm.     Anthurium umbrosum
+3: Lemna aequinoctialis                        SPECIES Lemna aequinoctialis Welw.   Lemna aequinoctialis
+4: Wolffia brasiliensis                        SPECIES Wolffia brasiliensis Wedd.   Wolffia brasiliensis
+   verbatimScientificNameAuthorship countryCode stateProvince decimalLatitude decimalLongitude
+1:                      Wedd., 1849          MX       Morelos        18.53389        -99.05700
+2:                     Liebm., 1850          MX        Oaxaca        17.49861        -96.35417
+3:                      Welw., 1859          MX       Morelos        18.62736        -99.41153
+4:                      Wedd., 1849          MX       Morelos        18.55678        -99.01744
+   coordinateUncertaintyInMeters elevation day month year      basisOfRecord
+1:                            90     485.0  10    10 1997 PRESERVED_SPECIMEN
+2:                            90    1790.0   8     6 1997 PRESERVED_SPECIMEN
+3:                            90     517.5  11    10 1997 PRESERVED_SPECIMEN
+4:                            90     587.5  26     9 1997 PRESERVED_SPECIMEN</code></pre>
+</div>
+</div>
+<p><br> Pero además de aplicar filtros data.table nos permite efectuar operaciones por ejemplo contar cuántas coincidencias tenemos para nuestros criterios aplicados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plants[family<span class="sc">==</span><span class="st">"Araceae"</span> <span class="sc">&amp;</span> year<span class="sc">==</span><span class="dv">1997</span>, .N]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>Es importante notar que en el primer espacio de nuestro corchete filtramos mientras en el segundo hicimos una operación. Lo que hicimos nos permite saber cuántas coincidencias hay de plantas registradas en 1997 independientemente de la especie. Existen símbolos especiales como .N que nos cuenta el número de observaciones que cumplen nuestros criterios.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pregunta: ¿Cuántos registros hay para el año 1983? (Utiliza .N)</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Respuesta
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plants[year<span class="sc">==</span><span class="dv">1983</span>, .N]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2769</code></pre>
+</div>
+</div>
+<p>Además de esto podemos hacer operaciones, pero para esta parte usaremos otro dataset</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/flights14.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por ejemplo si quisieramos saber el promedio de retraso de salida de los vuelos haríamos lo que sigue</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flights[, <span class="fu">mean</span>(dep_delay)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12.46526</code></pre>
+</div>
+</div>
+<p>Ahora calcularemos el promedio de retraso de salida para todo los vuelos que salieron del aeropuerto JFK en el mes de febrero.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flights[origin <span class="sc">==</span> <span class="st">"JFK"</span> <span class="sc">&amp;</span> month <span class="sc">==</span> 2L,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>        .(<span class="at">mean_arr =</span> <span class="fu">mean</span>(arr_delay))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   mean_arr
+1: 21.18646</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejercicio
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Ahora es tu turno: Calcula el promedio de retraso de salida y entrada para todo los vuelos que salieron del aeropuerto JFK en el mes de Junio. Llama a tus nuevas columnas “mean_arr” y “mean_dep”</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Respuesta
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flights[origin <span class="sc">==</span> <span class="st">"JFK"</span> <span class="sc">&amp;</span> month <span class="sc">==</span> 6L,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>        .(<span class="at">mean_arr =</span> <span class="fu">mean</span>(arr_delay), <span class="at">mean_dep =</span> <span class="fu">mean</span>(dep_delay))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   mean_arr mean_dep
+1: 5.839349 9.807884</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
