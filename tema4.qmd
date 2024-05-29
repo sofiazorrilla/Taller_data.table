@@ -23,6 +23,8 @@ plants[family=="Araceae" & year==1997]
 ```
 
 <br>
+
+### Operaciones en j
 Pero además de aplicar filtros data.table nos permite efectuar operaciones por ejemplo contar cuántas coincidencias tenemos para nuestros criterios aplicados.
 
 ```{r}
@@ -44,6 +46,8 @@ Pregunta:
 ```{r}
 plants[year==1983, .N]
 ```
+::: 
+
 Además de esto podemos hacer operaciones, pero para esta parte usaremos otro dataset
 
 ```{r}
@@ -71,10 +75,27 @@ Ahora es tu turno: Calcula el promedio de retraso de salida y entrada para todo 
 ::: {.callout-note collapse="true"}
 
 
+
 ```{r}
 flights[origin == "JFK" & month == 6L,
         .(mean_arr = mean(arr_delay), mean_dep = mean(dep_delay))]
 ```
 
+::: 
 
+## Agregar nuevas columnas a nuestro data.table
+
+Ahora qué sucede si queremos generar una nueva columna dentro de nuestro data frame. Por ejemplo si estimamos la diferencia que hay entre los retrasos de salida y llegada
+
+```{r}
+flights[, dif:=dep_delay - arr_delay]
+flights
+
+```
+
+Sino quisiera agregarla esto es lo que se haría
+
+```{r}
+flights[, .(dif = dep_delay - arr_delay)]
+```
 
