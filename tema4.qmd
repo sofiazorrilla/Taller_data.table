@@ -46,13 +46,8 @@ Pregunta:
 ```{r}
 plants[year==1983, .N]
 ```
-<<<<<<< HEAD
 :::
- <br> 
-=======
-::: 
-
->>>>>>> Majo
+ 
 Además de esto podemos hacer operaciones, pero para esta parte usaremos otro dataset
 
 ```{r}
