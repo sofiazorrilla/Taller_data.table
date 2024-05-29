@@ -4,9 +4,62 @@ format:
   html:
     page-layout: full 
 ---
+<<<<<<< HEAD
+=======
+
+Ahora continuaremos usando el dataset de las plantas para sacar datos considerando agrupaciones. 
+Por ejemplo podemos estimar cuántos registros hubo por año?
+
+>>>>>>> Majo
 ```{r}
 #| echo: false
 #| warning: false
 
 library(data.table)
+plants <- fread("data/sub_100000_plantae_mexico_conCoords_specimen.csv")
 ```
+
+```{r}
+plants[, .N,  by = year]
+```
+
+::: {.callout-note collapse="true"}
+## Ejercicio
+
+Podrías identificar en qué año se tienen más registros? No es necesario usar la nomeclatura de data.table, aunque en la respuesta daremos un ejemplo con ella. 
+
+::: 
+
+::: {.callout-note collapse="true"}
+## Respuesta
+```{r}
+plants[, .N,  by = year][order(-N)][1]
+```
+
+:::
+Como viste podemos usar la nomeclatura secuencialmente, pero esto sólo es un spoiler de los temas que verás a continuación. 
+
+<br>
+
+Podemos también buscar el año más antiguo del que tenemos registro por familia
+```{r}
+plants[, min(year),by=family]
+```
+
+Podemos usar by con mutiples factores? Por ejemplo saber cuántos registros tenemos por año para cada familia
+```{r}
+
+plants[, .N,by=.(family, year)]
+```
+::: {.callout-note collapse="true"}
+## Ejercicio
+En qué año y para qué familia hay más registros?
+:::
+
+::: {.callout-note collapse="true"}
+## Respuesta
+
+```{r}
+plants[, .N,by=.(family, year)][order(-N)]
+```
+:::
