@@ -4,13 +4,10 @@ format:
   html:
     page-layout: full 
 ---
-<<<<<<< HEAD
-=======
 
 Ahora continuaremos usando el dataset de las plantas para sacar datos considerando agrupaciones. 
 Por ejemplo podemos estimar cuántos registros hubo por año?
 
->>>>>>> Majo
 ```{r}
 #| echo: false
 #| warning: false
