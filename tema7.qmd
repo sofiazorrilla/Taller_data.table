@@ -23,6 +23,8 @@ merge(x, y, by = intersect(names(x), names(y)),
 
 
 ```{r}
+#| echo: true
+
 library(data.table)
 
 dt1 = data.table(id = seq(1,10), letter1 = LETTERS[sample(1:10, replace = T)])

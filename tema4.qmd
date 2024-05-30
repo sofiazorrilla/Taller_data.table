@@ -53,6 +53,7 @@ Además de esto podemos hacer operaciones, pero para esta parte usaremos otro da
 ```{r}
 flights <- fread("data/flights14.csv")
 ```
+
 Por ejemplo si quisieramos saber el promedio de retraso de salida de los vuelos haríamos lo que sigue
 
 ```{r}
@@ -65,7 +66,7 @@ Ahora calcularemos el promedio de retraso de salida para todo los vuelos que sal
 flights[origin == "JFK" & month == 2L,
         .(mean_arr = mean(arr_delay))]
 ```
-:::
+
 
 ::: {.callout-note collapse="true"}
 ## Ejercicio

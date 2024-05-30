@@ -4,32 +4,34 @@ Repositorio de taller de data.table para Rladies 31 mayo 2024
 ## Temas del taller
 
 1. Introducción
-    a. Historia
-    b. Función: Otra propuesta para manipular tablas
-    c. Diferencias con dplyr
-    d. Mencionar que hay integraciones entre ambos
-    e. Sintaxis
-    f. Cheatsheet y comandos específicos
+
+    - Función: Otra propuesta para manipular tablas
+    - Diferencias con dplyr
+    - Mencionar que hay integraciones entre ambos
+    - Sintaxis
+    - Cheatsheet 
 
 2. Importar y exportar datos
-    a. Crear objetos data.table
-    b. Importar y exportar datos de archivos
-    c. Comparaciones de velocidad entre read.csv y fread
-    d. Compatibilidad de data.table y data.frame
+    - Crear objetos data.table
+    - Importar y exportar datos de archivos
+    - Comparaciones de velocidad entre read.csv y fread
+    - Compatibilidad de data.table y data.frame
 
 3. Filtros y selección de columnas
-    a. Seleccionar por índices
-    b. Filtrar filas
-    c. Ordenar filas
-    e. Seleccionar columnas
-    f. Renombrar columnas
+    - Seleccionar por índices
+    - Filtrar filas
+    - Ordenar filas
+    - Seleccionar columnas
+    - Renombrar columnas
 
-4. Modificación de columnas 
+4. Modificación de columnas
+    - Operaciones de resumen
+    - Creación de nuevas columnas
+    - Operadores especiales (.N)
 
 5. Agrupación
     - Agrupación por clave
-    - Agrupación utilizando expresiones
-
+    
 6. Concatenación de comandos
     - ¿Qué es y para qué sirve?
     - Ejemplos

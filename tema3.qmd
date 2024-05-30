@@ -99,7 +99,7 @@ unique(ordered_data$stateProvince) |> head()
 ```
 
 ::: {.callout-note collapse="true"}
-## Ejercicio
+## Reto
 
 1. Carga el archivo de registros de plantas utilizando la función fread que revisamos en el tema anterior
 2. Utiliza un filtro para quedarte con las filas que pertenezcan a un género o especie que te guste
@@ -124,14 +124,14 @@ data_quercus_ordenado <- data_quercus[order(-year)]
 
 # Una función útil en el paquete es la función .N que te permite guardar el número de observaciones en el grupo actual. En este caso solo tenemos un solo grupo y por lo tanto guarda el número de filas en la tabla.
 
-data_quercus_ordenado[c(1,.N),] |> knitr::kable()
+data_quercus_ordenado[c(1, nrow(data_quercus_ordenado)),]$year
 
 ```
 
 ```{r}
 #| echo: false
 
-data_quercus[!is.na(year),][order(-year)][c(1,.N)] |> knitr::kable()
+data_quercus[!is.na(year),][order(-year)][c(1,.N)]$year 
 ```
 :::
 
@@ -190,7 +190,7 @@ data[ , ..variables]
 ```
 
 ::: {.callout-note collapse="true"}
-## Ejercicio
+## Reto
 
 1. Selecciona las columnas que contengan información acerca de la ubicación geográfica de los registros.
 :::

@@ -22,7 +22,7 @@ DT
 <br>
 
 ::: {.callout-note collapse="true"}
-## Ejercicio
+## Reto
 
 Imaginemos que queremos crear una simulación de una base de datos de secuencias aleatorias. La tabla que queremos al final va a tener dos columnas, la primera es un número identificador de cada secuencia y la segunda la secuencia aleatoria de tamaño 300. Por ejemplo, la siguiente tabla muestra las primeras 10 filas del resultado esperado. 
 
@@ -103,7 +103,7 @@ fread("data/head_registros.csv") |> knitr::kable()
 <br>
 
 ::: {.callout-note collapse="true"}
-## Ejercicio
+## Reto
 
 
 Utiliza el código anterior para cargar la tabla de especímenes en tu computadora. 
@@ -174,7 +174,7 @@ read.csv("data/benchmark_results.csv") |> knitr::kable()
 ```
 
 ::: {.callout-note collapse="true"}
-## Ejercicio opcional
+## Reto
 
 Si quieres, puedes revisar el tiempo que te toma cargar la base de datos XX utilizando read.csv y fread. Utiliza el comando de benchmark de la paquetería rbenchmark para contar el tiempo. Nota: en el número de réplicas puedes poner una o dos porque si no te vas a tardar mucho. 
 
