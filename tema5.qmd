@@ -30,7 +30,9 @@ Podrías identificar en qué año se tienen más registros? No es necesario usar
 ::: {.callout-note collapse="true"}
 ## Respuesta
 ```{r}
-plants[, .N,  by = year][order(-N)][1]
+tmp_plants <- plants[, .N,  by = year]
+tmp_plants[order(-N)][1]
+
 ```
 
 :::
@@ -57,6 +59,9 @@ En qué año y para qué familia hay más registros?
 ## Respuesta
 
 ```{r}
-plants[, .N,by=.(family, year)][order(-N)]
+
+temp_plants2 <- plants[, .N,by=.(family, year)]
+temp_plants2[order(-N)][1]
+
 ```
 :::
