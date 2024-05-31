@@ -61,10 +61,6 @@ Repositorio de taller de data.table para Rladies 31 mayo 2024
 
 7. [Introducción a data.table](https://bookdown.org/paradinas_iosu/CursoR/data-table.html)
 
-
-
-### Páginas con temas avanzados de data.table
-
 - https://jangorecki.github.io/blog/2015-12-11/Solve-common-R-problems-efficiently-with-data.table.html
 
 - https://brooksandrew.github.io/simpleblog/articles/advanced-data-table/
