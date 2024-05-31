@@ -23,7 +23,7 @@ plants[, .N,  by = year]
 ::: {.callout-note collapse="true"}
 ## Ejercicio
 
-Podrías identificar en qué año se tienen más registros? No es necesario usar la nomeclatura de data.table, aunque en la respuesta daremos un ejemplo con ella. 
+Podrías identificar en qué año se tienen más registros? No es necesario usar la nomeclatura de data.table. 
 
 ::: 
 
