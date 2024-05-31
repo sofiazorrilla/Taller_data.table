@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    ][ ...
      ][ ...
        ]</code></pre>
-<p>Por ejemplo, utilizando la tabla de registros de plantas de México podemos:</p>
+<p>Por ejemplo, recapitulando temas anteriores, utilizando la tabla de registros de plantas de México podemos:</p>
 <ol type="1">
 <li>Seleccionar los registros del género Quercus y filtrar aquellos que no tienen información acerca de la especie o del año de colecta</li>
 </ol>
@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data[genus <span class="sc">==</span> <span class="st">"Quercus"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(species) <span class="sc">&amp;</span> species <span class="sc">!=</span> <span class="st">""</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(year), .(.N), by <span class="ot">=</span> .(year,species)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="5" type="1">
-<li>Ordenar la columna de número de registros de mayor a menor</li>
+<li>Ordenar la columna de número de registros de mayor a menor utilizando una <strong>cadena de operaciones</strong></li>
 </ol>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data[genus <span class="sc">==</span> <span class="st">"Quercus"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(species) <span class="sc">&amp;</span> species <span class="sc">!=</span> <span class="st">""</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(year), .(<span class="at">N =</span> .N), by <span class="ot">=</span> .(year,species)][<span class="fu">order</span>(year,<span class="sc">-</span>N)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

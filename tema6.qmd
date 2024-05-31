@@ -18,7 +18,7 @@ DT[ ...
        ]
 ```
 
-Por ejemplo, utilizando la tabla de registros de plantas de México podemos:
+Por ejemplo, recapitulando temas anteriores, utilizando la tabla de registros de plantas de México podemos:
 
 1. Seleccionar los registros del género Quercus y filtrar aquellos que no tienen información acerca de la especie o del año de colecta
 
@@ -42,7 +42,7 @@ data[genus == "Quercus" & !is.na(species) & species != "" & !is.na(year), .(.N),
 
 ```
 
-5. Ordenar la columna de número de registros de mayor a menor
+5. Ordenar la columna de número de registros de mayor a menor utilizando una **cadena de operaciones**
 
 ```{.r}
 

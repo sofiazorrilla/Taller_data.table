@@ -2,6 +2,8 @@
 ## Script de ejemplos y ejercicios: introducción a data.table ##
 ################################################################
 
+#setwd()
+
 
 ###############################
 ## Importar y exportar datos ##
@@ -22,6 +24,17 @@ DT = data.table(
 
 DT
 
+# Asegurar que los datos existen
+
+## Si no haz descargado la carpeta de data en tu directorio de trabajo
+# # Revisa si existe, si no crea la carpeta
+# if (!file.exists("data")) {
+#   dir.create("data")
+# }
+
+# # Descarga el archivo de datos en la carpeta de data
+# download.file(url = "https://raw.githubusercontent.com/R-Ladies-Morelia/CursosRladiesMorelia_RladiesQueretaro_2024/main/Hackaton2024/Taller_data.table/data/sub_100000_plantae_mexico_conCoords_specimen.csv", destfile = "data/sub_100000_plantae_mexico_conCoords_specimen.csv")
+
 # Leer archivo
 
 data  <- fread("data/sub_100000_plantae_mexico_conCoords_specimen.csv")
@@ -30,7 +43,7 @@ head(data)
 
 # Escribir archivo
 
-fwrite(data, "data/testDT.csv", sep = ",")
+fwrite(DT, "data/testDT.csv", sep = ",")
 
 # Opcional (escribir archivo comprimido)
 
@@ -56,6 +69,9 @@ data_quercus_viejos <- data[genus == "Quercus" & year <= 1950,]
 
 dim(data_quercus_viejos)
 
+# Nota: En el filtro solo mantiene los TRUE
+all(!is.na(data_quercus_viejos$year))
+all(!is.na(data_quercus$year))
 
 # Ordenar filas 
 
@@ -124,6 +140,10 @@ data[family=="Araceae" & year==1997, .N]
 
 #Pregunta:
 #¿Cuántos registros hay para el año 1983? (Utiliza .N)
+
+
+# # Descarga el archivo de datos en la carpeta de data
+# download.file(url = "https://raw.githubusercontent.com/R-Ladies-Morelia/CursosRladiesMorelia_RladiesQueretaro_2024/main/Hackaton2024/Taller_data.table/data/flights14.csv", destfile = "data/flights14.csv")
 
 ### Leer dataset flights
 

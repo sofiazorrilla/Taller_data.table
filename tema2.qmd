@@ -69,16 +69,16 @@ Las funciones para importar (`fread`) y exportar (`fwrite`) tienen las siguiente
 
 - `sep`: el delimitador entre columnas.
 
-- `dec`: el separador decimal.
-
-- `dateTimeAs`: formato en el que guardar objetos de fecha. Por defecto es “ISO”.
+Nota: La función tiene muchos argumentos que pueden ayudarte a personalizar el proceso de cargar datos en R. 
 
 ### Conjunto de datos
 
 En esta y la siguiente sección vamos a trabajar una tabla de todos los especímenes de plantas que tiene registrados la plataforma GBIF (Global Biodiversity Information Facility) para México. Específicamente esta tabla solo contiene los registros de plantas que tienen un especímen guardado en alguna colección biológica y que tienen coordenadas que nos permitan ubicarlos.
 
 
-**Ejemplo**: Por ejemplo, podemos importar la tabla de plantae_mexico_conCoords_specimen.csv que tiene 3062756 registros y 50 filas. 
+**Ejemplo**: Por ejemplo, podemos importar la tabla original de plantae_mexico_conCoords_specimen.csv que tiene 3062756 registros y 50 filas. 
+
+[Link](https://api.gbif.org/v1/occurrence/download/request/0038585-240506114902167.zip) para descargar la tabla completa. Descargarás una carpeta zip en donde viene el archivo de ocurrencias en formato Darwin Core (separado por comas)
 
 **Nota:** `fread()` también permite leer archivos comprimidos `.gz`
 
@@ -124,14 +124,13 @@ data.table también tiene una función optimizada para escribir los datos con lo
 **Ejemplo**: podemos escribir la tabla DT que creamos al principio de la sección:
 
 ```{.r}
-fwrite(data, "data/testDT.csv", sep = ",")
+fwrite(DT, "data/testDT.csv", sep = ",")
 ```
 
 <br>
 
 ::: {.callout-note collapse="true"}
 ## Ejercicio
-
 
 Exporta la tabla de registros de especimenes como un archivo comprimido.
 
@@ -141,7 +140,7 @@ Exporta la tabla de registros de especimenes como un archivo comprimido.
 ## Respuesta
 
 ```{.r}
-fwrite(data, "data/plantae_mexico_conCoords_specimen.csv.gz", sep = ",", compress = "auto")
+fwrite(data, "data/sub_100000_plantae_mexico_conCoords_specimen.csv.gz", sep = ",", compress = "auto")
 ```
 
 :::

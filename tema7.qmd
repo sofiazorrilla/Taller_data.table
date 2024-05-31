@@ -16,7 +16,7 @@ merge(x, y, by = intersect(names(x), names(y)),
 
 `x`, `y` = son los objetos data.table que se quieren unir
 
-`by`, `by.x`, `by.y` = nombres de las columnas que funcionan como índice para hacer la unión. Cuando ambas tablas tienen el mismo nombre de columna se utiliza by, cuando no se puede especificar el nombre en x (by.x) y el nombre en y (by.y)
+`by`, `by.x`, `by.y` = nombres de las columnas que funcionan como índice para hacer la unión. Cuando ambas tablas tienen el mismo nombre de columna se utiliza by, cuando no, se puede especificar el nombre en x (by.x) y el nombre en y (by.y)
 
 `all`, `all.x`, `all.y` = especifican el tipo de unión. all = T es para hacer full join (mantiene todas las filas de ambas tablas), all.x = T es para hacer left join (mantiene todas las filas de la tabla x), all.y es para hacer right join (mantiene todas las filas de y), all = F es para hacer inner join (solo mantiene las filas que están en ambas tablas)
 
