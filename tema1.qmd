@@ -10,8 +10,6 @@ data.table es un objeto de R que está pensado para mantener las operaciones en 
 
 3. Un espacio en el que se pueden indicar agrupaciones con base en las cuales se apliquen otras operaciones (group_by en dplyr)
 
-4. Nota: Estos 3 tipos de operaciones no son los únicos, existen más y se pueden consultar en XXX. 
-
 
 :::{.center}
 ![Sintaxis básica. DT = objeto data.table, i = espacio en el que ocurren las operaciones de las filas (filtrar u ordenar), j = espacio en el que ocurren las operaciones sobre las columnas (seleccionar, modificar), by = espacio para hacer agrupaciones por medio de un índice](img/sintaxis.png)

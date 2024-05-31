@@ -4,14 +4,17 @@ title: "Introducción y recursos"
 
 ## ¿Qué es? ¿Qué ventajas tiene?
 
-Es un paquete que extiende y hace más eficiente el `data.frame` de R base. De acuerdo con los creadores del [paquete](https://rdatatable.gitlab.io/data.table/index.html), las ventajas de data.table son:
+Es un paquete que extiende y hace más eficiente el `data.frame` de R base. De acuerdo con los creadores del [paquete](https://rdatatable.gitlab.io/data.table/index.html):
 
-- Sintaxis consisa
-- Velocidad de operaciones
-- Eficiencia en el uso de la memoria
-- Manejo cuidadoso del ciclo de vida de API 
-- Una amplia comunidad
-- Una amplia variedad de funciones
+> Las operaciones de manipulación de datos como subconjunto, grupo, actualización, unión, etc., están **inherentemente relacionadas**. Mantener estas operaciones juntas permite:
+
+> - una **sintaxis concisa** y consistente independientemente del conjunto de operaciones que desees realizar para lograr tu objetivo final.
+> - realizar análisis de manera **fluida** sin la carga cognitiva de tener que mapear cada operación a una función particular de un conjunto potencialmente enorme de funciones disponibles antes de realizar el análisis.
+> - **optimizar** automáticamente las operaciones internamente y de manera muy efectiva, al saber precisamente los datos requeridos para cada operación, lo que lleva a un código muy rápido y eficiente en términos de memoria.
+
+> En resumen, si estás interesado en **reducir** enormemente el **tiempo de programación y computación**, entonces este paquete es para ti.
+
+> ([Vigñeta de introducción a data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html))
 
 
 ## Comparaciones con otros paquetes

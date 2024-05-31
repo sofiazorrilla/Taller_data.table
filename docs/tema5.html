@@ -252,18 +252,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plants[, .N,  by <span class="ot">=</span> year]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     year    N
-  1: 1983 2769
-  2: 1998 2525
-  3: 1990 2366
-  4: 2003 1608
-  5: 1970 1003
- ---          
-190: 1846    2
-191: 1832    1
-192: 1852    1
-193: 1873    1
-194: 1788    1</code></pre>
+<pre><code>      year     N
+     &lt;int&gt; &lt;int&gt;
+  1:  1983  2769
+  2:  1998  2525
+  3:  1990  2366
+  4:  2003  1608
+  5:  1970  1003
+ ---            
+190:  1846     2
+191:  1832     1
+192:  1852     1
+193:  1873     1
+194:  1788     1</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -278,7 +279,7 @@ Ejercicio
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Podrías identificar en qué año se tienen más registros? No es necesario usar la nomeclatura de data.table, aunque en la respuesta daremos un ejemplo con ella.</p>
+<p>Podrías identificar en qué año se tienen más registros? No es necesario usar la nomeclatura de data.table.</p>
 </div>
 </div>
 </div>
@@ -295,10 +296,12 @@ Respuesta
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plants[, .N,  by <span class="ot">=</span> year][<span class="fu">order</span>(<span class="sc">-</span>N)][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tmp_plants <span class="ot">&lt;-</span> plants[, .N,  by <span class="ot">=</span> year]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tmp_plants[<span class="fu">order</span>(<span class="sc">-</span>N)][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   year    N
-1: 1986 3333</code></pre>
+<pre><code>    year     N
+   &lt;int&gt; &lt;int&gt;
+1:  1986  3333</code></pre>
 </div>
 </div>
 </div>
@@ -310,36 +313,38 @@ Respuesta
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plants[, <span class="fu">min</span>(year),by<span class="ot">=</span>family]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            family   V1
-  1:       Araceae   NA
-  2:  Goodeniaceae 1919
-  3:  Bromeliaceae   NA
-  4: Commelinaceae   NA
-  5:    Asteraceae   NA
- ---                   
-493:   Ulvellaceae   NA
-494:    Timmiaceae 1985
-495:   Onocleaceae 1983
-496: Lepicoleaceae 1973
-497: Sarcobataceae 1972</code></pre>
+<pre><code>            family    V1
+            &lt;char&gt; &lt;int&gt;
+  1:       Araceae    NA
+  2:  Goodeniaceae  1919
+  3:  Bromeliaceae    NA
+  4: Commelinaceae    NA
+  5:    Asteraceae    NA
+ ---                    
+493:   Ulvellaceae    NA
+494:    Timmiaceae  1985
+495:   Onocleaceae  1983
+496: Lepicoleaceae  1973
+497: Sarcobataceae  1972</code></pre>
 </div>
 </div>
 <p>Podemos usar by con mutiples factores? Por ejemplo saber cuántos registros tenemos por año para cada familia</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plants[, .N,by<span class="ot">=</span>.(family, year)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               family year   N
-    1:        Araceae 1983  10
-    2:   Goodeniaceae 1998   2
-    3:   Bromeliaceae 1990  25
-    4:  Commelinaceae 2003  16
-    5:     Asteraceae 1970 145
-   ---                        
-14218: Gleicheniaceae 1986   1
-14219:   Gentianaceae 2014   1
-14220:  Hernandiaceae 2000   1
-14221:       Fabaceae 1841   1
-14222:   Polygalaceae 2014   1</code></pre>
+<pre><code>               family  year     N
+               &lt;char&gt; &lt;int&gt; &lt;int&gt;
+    1:        Araceae  1983    10
+    2:   Goodeniaceae  1998     2
+    3:   Bromeliaceae  1990    25
+    4:  Commelinaceae  2003    16
+    5:     Asteraceae  1970   145
+   ---                           
+14218: Gleicheniaceae  1986     1
+14219:   Gentianaceae  2014     1
+14220:  Hernandiaceae  2000     1
+14221:       Fabaceae  1841     1
+14222:   Polygalaceae  2014     1</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -371,20 +376,12 @@ Respuesta
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plants[, .N,by<span class="ot">=</span>.(family, year)][<span class="fu">order</span>(<span class="sc">-</span>N)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>temp_plants2 <span class="ot">&lt;-</span> plants[, .N,by<span class="ot">=</span>.(family, year)]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>temp_plants2[<span class="fu">order</span>(<span class="sc">-</span>N)][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               family year   N
-    1:     Asteraceae 1986 483
-    2:     Asteraceae 1985 406
-    3:     Asteraceae 1988 399
-    4:        Poaceae 1994 382
-    5:     Asteraceae 1983 377
-   ---                        
-14218: Gleicheniaceae 1986   1
-14219:   Gentianaceae 2014   1
-14220:  Hernandiaceae 2000   1
-14221:       Fabaceae 1841   1
-14222:   Polygalaceae 2014   1</code></pre>
+<pre><code>       family  year     N
+       &lt;char&gt; &lt;int&gt; &lt;int&gt;
+1: Asteraceae  1986   483</code></pre>
 </div>
 </div>
 </div>
