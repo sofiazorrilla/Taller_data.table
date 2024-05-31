@@ -236,7 +236,7 @@ dt2[dt1, on = "id"]
 ##################################################
 ### Antes de iniciar este ejercicio asegúrate de tener
 ### el archivo que puedes conseguir en este link:
-### 
+### https://drive.google.com/file/d/16za7dS3DcMR_VKFJdszLU2kJUS9bB7Dr/view?usp=share_link
 ### Guarda este archivo en el folder data
 ### Cuánto tiempo se tarda en el leer este archivo usando read.table?
 start.time <- Sys.time()
