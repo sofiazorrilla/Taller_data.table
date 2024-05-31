@@ -14,7 +14,7 @@ Es un paquete que extiende y hace más eficiente el `data.frame` de R base. De a
 
 > En resumen, si estás interesado en **reducir** enormemente el **tiempo de programación y computación**, entonces este paquete es para ti.
 
-> ([Vigñeta de introducción a data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html))
+> ([Vigneta de introducción a data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html))
 
 
 ## Comparaciones con otros paquetes
